@@ -1,17 +1,20 @@
 import { ShoppingCart } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import Image from "next/image";
-// import BASE_PATH_FOR_API from "../../components/Shared/BasePath";
+import BASE_PATH_FOR_API from "../../components/Shared/BasePath";
 
-// async function fetchAllProductsData() {
-//   let response = await fetch(`${BASE_PATH_FOR_API}/api/products`);
-//   if (!response.ok) {
-//     throw new Error("Failed to fetch data.");
-//   }
-//   return response.json();
-// }
+async function fetchAllProductsData() {
+  let response = await fetch(`${BASE_PATH_FOR_API}/api/products`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch data.");
+  }
+  return response.json();
+}
 
-export default function Home() {
+export default async function Home() {
+  let { response } = await fetchAllProductsData();
+  console.log("Response: ", response);
+
   return (
     <div>
       {/* Hero Section */}
@@ -44,6 +47,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="container mt-12 mb-12">1</div>
       {/* Promotions */}
       <div className="container flex flex-col mt-20 mb-20 mx-auto lg:max-w-7xl">
         <div className="text-center mb-4">
